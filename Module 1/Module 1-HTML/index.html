@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Earth Day Community Event Portal</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#e8f5e9; color:#2e7d32; }
+    header { background:#388e3c; color:#fff; padding:1rem; text-align:center; }
+    nav a { color:#fff; margin: 0 1rem; text-decoration:none; font-weight:bold; }
+    nav a:hover { text-decoration: underline; }
+    main { max-width:900px; margin: 2rem auto; padding: 0 1rem; }
+    /* Welcome banner */
+    #welcomeBanner { background: #4caf50; color: white; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; }
+    .highlight { background-color: #a5d6a7; padding: 0 5px; border-radius: 3px; }
+    /* Table gallery */
+    table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+    td, th { border: 1px solid #4caf50; padding: 0.5rem; text-align:center; }
+    .gallery-img { width: 100%; max-width: 250px; border: 3px solid #4caf50; border-radius: 8px; cursor: pointer; }
+    caption { font-weight: bold; margin-bottom: 1rem; }
+    /* Form styling */
+    form { background: #c8e6c9; padding: 1rem 1.5rem; border-radius: 8px; margin-bottom: 3rem; }
+    label { display: block; margin-top: 1rem; font-weight: bold; }
+    input, select, textarea { width: 100%; padding: 0.4rem; border: 1px solid #4caf50; border-radius: 5px; margin-top: 0.3rem; }
+    input[type="submit"], button { background: #388e3c; color: white; border: none; padding: 0.7rem 1.2rem; border-radius: 5px; cursor: pointer; margin-top: 1rem; }
+    input[type="submit"]:hover, button:hover { background: #2e7d32; }
+    output { display: block; margin-top: 1rem; font-weight: bold; color: #1b5e20; }
+    /* Feedback styling */
+    #feedbackSection { background: #dcedc8; padding: 1rem; border-radius: 8px; margin-bottom: 3rem; }
+    #charCount { font-weight: bold; }
+    /* Video styling */
+    video { width: 100%; max-width: 600px; margin-top: 1rem; border-radius: 8px; }
+    /* Geolocation output */
+    #geoOutput { margin-top: 1rem; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<!-- Header and Navigation -->
+<header>
+  <h1>Earth Day Community Event Portal</h1>
+  <nav>
+    <a href="#welcome">Home</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#registration">Register</a>
+    <a href="#feedbackSection">Feedback</a>
+    <a href="#videoInvite">Promo Video</a>
+    <a href="#preferences">Preferences</a>
+    <a href="#geolocation">Find Events</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- Welcome Banner -->
+  <section id="welcome">
+    <div id="welcomeBanner">
+      Welcome to the <span class="highlight">Earth Day Event</span> Portal! 
+      <span style="color:red; font-weight:bold;">Special offer:</span> Register now and get a free eco-friendly tote bag!
+    </div>
+  </section>
+
+  <!-- Image Gallery in Table -->
+  <section id="gallery">
+    <h2>Community Event Gallery</h2>
+    <table>
+      <caption>Past Earth Day Activities</caption>
+      <tr>
+        <td>
+          <img class="gallery-img" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=250&q=80" alt="Tree Planting" title="Tree Planting" ondblclick="enlargeImage(this)" />
+          <br>Tree Planting
+        </td>
+       
+        <td>
+          <img class="gallery-img" src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=250&q=80" alt="Recycling Workshop" title="Recycling Workshop" ondblclick="enlargeImage(this)" />
+          <br>Recycling Workshop
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <img class="gallery-img" src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=250&q=80" alt="Wildlife Preservation" title="Wildlife Preservation" ondblclick="enlargeImage(this)" />
+          <br>Wildlife Preservation
+        </td>
+        
+        <td>
+          <img class="gallery-img" src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=250&q=80" alt="Community Garden" title="Community Garden" ondblclick="enlargeImage(this)" />
+          <br>Community Garden
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- Event Registration Form -->
+  <section id="registration">
+    <h2>Event Registration Form</h2>
+    <form id="regForm">
+      <label for="name">Name *</label>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required autofocus />
+
+      <label for="email">Email *</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+      <label for="date">Preferred Date *</label>
+      <input type="date" id="date" name="date" required />
+
+      <label for="eventType">Event Type *</label>
+      <select id="eventType" name="eventType" required onchange="showEventFee()">
+        <option value="">-- Select an event --</option>
+        <option value="treePlanting" data-fee="0">Tree Planting (Free)</option>
+        <option value="workshop" data-fee="10">Recycling Workshop ($10)</option>
+        <option value="talk" data-fee="5">Educational Talk ($5)</option>
+      </select>
+
+      <div id="feeDisplay" style="margin-top: 0.5rem; font-weight:bold;"></div>
+
+      <label for="message">Additional Message</label>
+      <textarea id="message" name="message" rows="4" placeholder="Tell us if you have any special requests or questions..."></textarea>
+
+      <label for="phone">Phone Number *</label>
+      <input type="tel" id="phone" name="phone" placeholder="123-456-7890" required onblur="validatePhone()" />
+
+      <input type="submit" value="Submit Registration" onclick="confirmSubmission(event)" />
+      <output id="confirmationOutput"></output>
+    </form>
+  </section>
+
+  <!-- Feedback Section -->
+  <section id="feedbackSection">
+    <h2>Event Feedback</h2>
+    <form id="feedbackForm">
+      <label for="feedback">Your Feedback</label>
+      <textarea id="feedback" name="feedback" rows="5" placeholder="Type your feedback here..." onkeydown="countChars(event)" onkeyup="countChars(event)"></textarea>
+      <div>Characters typed: <span id="charCount">0</span></div>
+      <button type="button" onclick="submitFeedback()">Submit Feedback</button>
+    </form>
+  </section>
+
+  <!-- Video Invite Section -->
+  <section id="videoInvite">
+    <h2>Event Promo Video</h2>
+    <video id="promoVideo" controls oncanplay="videoReady()">
+      <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" type="video/webm" />
+      <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <div id="videoStatus" style="margin-top: 0.5rem; font-weight: bold;"></div>
+  </section>
+
+  <!-- Preferences Section -->
+  <section id="preferences">
+    <h2>Save Your Event Preferences</h2>
+    <label for="prefEvent">Select your preferred event:</label>
+    <select id="prefEvent" onchange="savePreference()">
+      <option value="">-- Select an event --</option>
+      <option value="treePlanting">Tree Planting</option>
+      <option value="workshop">Recycling Workshop</option>
+      <option value="talk">Educational Talk</option>
+    </select>
+    <button type="button" onclick="clearPreferences()">Clear Preferences</button>
+    <div id="prefStatus" style="margin-top: 0.5rem; font-weight: bold;"></div>
+  </section>
+
+  <!-- Geolocation Section -->
+  <section id="geolocation">
+    <h2>Find Nearest Earth Day Events</h2>
+    <button type="button" onclick="findNearbyEvents()">Find Nearby Events</button>
+    <div id="geoOutput"></div>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2025 Earth Day Community Event Portal | Together for a Greener Tomorrow</p>
+</footer>
+
+<script>
+  // Enlarge image on double-click
+  function enlargeImage(img) {
+    if (img.style.transform === "scale(1.5)") {
+      img.style.transform = "scale(1)";
+      img.style.transition = "transform 0.3s ease";
+    } else {
+      img.style.transform = "scale(1.5)";
+      img.style.transition = "transform 0.3s ease";
+    }
+  }
+
+  // Phone number validation on blur
+  function validatePhone() {
+    const phoneInput = document.getElementById("phone");
+    const phonePattern = /^\d{3}[- ]?\d{3}[- ]?\d{4}$/;
+    if (!phonePattern.test(phoneInput.value)) {
+      alert("Please enter a valid phone number (e.g., 123-456-7890).");
+      phoneInput.focus();
+    }
+  }
+
+  // Show event fee on event type change
+  function showEventFee() {
+    const select = document.get

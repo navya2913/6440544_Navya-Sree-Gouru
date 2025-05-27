@@ -1,0 +1,158 @@
+/* Reset margin and padding on all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  color: #004d40; /* dark teal text */
+  background: #e0f2f1 url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') no-repeat center center fixed;
+  background-size: cover;
+  line-height: 1.5;
+  padding: 20px;
+}
+
+/* Header styles */
+#mainHeader {
+  text-align: center;
+  background: linear-gradient(90deg, #388e3c, #81c784);
+  color: white;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+}
+
+/* Navigation menu */
+.navMenu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.navMenu li {
+  padding: 5px 10px;
+}
+
+/* Navigation links with pseudo-classes */
+.navMenu a:link,
+.navMenu a:visited {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.navMenu a:hover,
+.navMenu a:active {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Event Card styling */
+.eventCard {
+  background-color: rgba(255, 255, 255, 0.85);
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 2px solid #4caf50;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Headings */
+h2 {
+  color: #2e7d32;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 1rem;
+}
+
+/* Grouping selector for h3 and p */
+h3, p {
+  margin-bottom: 1rem;
+  font-family: Georgia, serif;
+}
+
+/* Description paragraph */
+.description {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #00695c;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  border: 1px solid #4caf50;
+  padding: 0.6rem;
+  text-align: center;
+  background-color: #a5d6a7;
+}
+
+/* Zebra striping */
+tbody tr:nth-child(even) {
+  background-color: #81c784;
+}
+
+/* Table caption */
+caption {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* Form inputs */
+.form-input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.3rem 0 1rem 0;
+  border: 1px solid #4caf50;
+  border-radius: 4px;
+}
+
+.form-input:focus {
+  outline: 2px solid #2e7d32;
+  outline-offset: 2px;
+}
+
+/* Call to Action Button */
+.cta-button {
+  background-color: #388e3c;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #2e7d32;
+}
+
+/* Multi-column news section */
+.news-columns {
+  column-count: 2;
+  column-gap: 25px;
+  column-rule: 1px solid #4caf50;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+  .navMenu {
+    flex-direction: column;
+  }
+  .news-columns {
+    column-count: 1;
+  }
+}
